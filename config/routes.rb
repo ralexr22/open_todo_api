@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     end
     resources :lists, only: [] do
       resources :items, only: [:create]
-  end
+    end
     resources :items, only: [:destroy]
-  end 
+    end
 end
