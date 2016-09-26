@@ -13,9 +13,9 @@ class Api::ListsController < ApiController
 
   def destroy
      begin
-       user = User.find(params[:id])
+       user = User.find(params[:user_id])
        list = List.find(params[:id])
-       lis.destroy
+       list.destroy
        render json: {}, status: :no_content
      rescue ActiveRecord::RecordNotFound
        render :json => {}, :status => :not_found
@@ -24,6 +24,6 @@ class Api::ListsController < ApiController
 
   private
   def list_params
-    params.require(:list).permit(:name, :permissions)
+    params.require(:list).permit(:name, :user_id, :permissions)
   end
 end

@@ -23,7 +23,7 @@ class Api::UsersController < ApiController
     rescue ActiveRecord::RecordNotFound
       render :json => {}, :status => :not_found
     end
-  end 
+  end
 
   private
   def user_params
