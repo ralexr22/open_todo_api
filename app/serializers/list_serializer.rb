@@ -1,3 +1,3 @@
 class ListSerializer < ActiveModel::Serializer
-  attributes :id, :created_at, :name, :user_id, :permissions 
+  attributes :id, :created_at, :name, :permissions 
 end
