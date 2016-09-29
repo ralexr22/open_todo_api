@@ -4,6 +4,8 @@ class Api::ListsController < ApiController
   def create
     user = User.find(params[:user_id])
     list = List.new(list_params)
+    list.user = user
+
     if list.save
       render json: list
     else
@@ -19,6 +21,20 @@ class Api::ListsController < ApiController
        render json: {}, status: :no_content
      rescue ActiveRecord::RecordNotFound
        render :json => {}, :status => :not_found
+     end
+   end
+
+   def update
+     begin
+       list = List.find(params[:id])
+     rescue ActiveRecord::RecordNotFound
+       render :json => {}, :status => :not_found and return
+     end
+
+     if list.update(list_params)
+       render json: list
+     else
+       render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
      end
    end
 
